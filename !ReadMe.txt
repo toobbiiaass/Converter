@@ -1,2 +1,2 @@
-download java
--> create a .bat and use that command "start javaw -jar FILE.jar"
+start "!start.bat"
+if it dont work download java
