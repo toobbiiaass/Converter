@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class Main { //make outputPath to use from the user
+public class Main {
     private static ArrayList<Logger> logs = new ArrayList<>();
 
    private static String outputPathTP = "";
