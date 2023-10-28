@@ -24,7 +24,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose a path where the converted tp should be saved!");
         String oup = scanner.nextLine();
-        outputPathTP = oup;
+        outputPathTP = oup+"\\";
 
         System.out.println("\nSpecify the folder that should be converter!\n Must be 1.8 Tp and unpacked (directory where pack.mcmeta file is \n...");
         String tpPath = scanner.nextLine();
@@ -117,13 +117,6 @@ public class Main {
         Misc misc = new Misc();
         misc.renameMiscs(destinationFolder+"\\assets\\minecraft\\textures\\misc");
 
-        //moved Container richtig hin
-        try {
-            copyDir(new File("C:\\Privat\\coding\\TPConverter\\container").toPath(),new File(destinationFolder+"\\assets\\minecraft\\textures\\gui\\container").toPath(),"container");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         //Rename Guis
         RenameGui renameGui=new RenameGui();
         renameGui.renameGuis(tpPath+"\\assets\\minecraft\\textures\\gui",destinationFolder+"\\assets\\minecraft\\textures\\gui");
@@ -131,8 +124,8 @@ public class Main {
         Particle particle = new Particle();
         particle.particlesConverter(tpPath+"\\assets\\minecraft\\textures\\particle",destinationFolder+"\\assets\\minecraft\\textures\\particle",destinationFolder+"\\assets\\minecraft\\textures\\entity");
 
-        copyFile(Paths.get("C:\\Privat\\coding\\TPConverter\\fire_0.png.mcmeta"),Paths.get(destinationFolder+"\\assets\\minecraft\\textures\\block\\fire_0.png.mcmeta"),"fire_0.png.mcmeta");
-        copyFile(Paths.get("C:\\Privat\\coding\\TPConverter\\fire_1.png.mcmeta"),Paths.get(destinationFolder+"\\assets\\minecraft\\textures\\block\\fire_1.png.mcmeta"),"fire_1.png.mcmeta");
+        copyFile(Paths.get("fire_0.png.mcmeta"),Paths.get(destinationFolder+"\\assets\\minecraft\\textures\\block\\fire_0.png.mcmeta"),"fire_0.png.mcmeta");
+        copyFile(Paths.get("fire_1.png.mcmeta"),Paths.get(destinationFolder+"\\assets\\minecraft\\textures\\block\\fire_1.png.mcmeta"),"fire_1.png.mcmeta");
 
         if(netheriteGenerate){
             AddNetherite netherite = new AddNetherite();
@@ -191,18 +184,6 @@ public class Main {
             System.err.println(name+" dont exist");
         }
 
-    }
-    public static void copyDir(Path src, Path dest, String name) throws IOException {
-        Files.walk(src)
-                .forEach(source -> {
-                    try {
-                        Files.copy(source, dest.resolve(src.relativize(source)),
-                                StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-        System.out.println( name+" directory moved successfully.");
     }
     public static void addLog(Logger log){
         logs.add(log);
