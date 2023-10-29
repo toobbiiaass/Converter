@@ -24,18 +24,17 @@ public class RenameGui {
             if (flag == true) {
                 Main.addLog(new Logger(newNames[i]," renamed to", LocalTime.now()));
             }
-            else {
-                //System.err.println(newNames[i]+" error!");
-            }
         }
         File particlesImage = new File(olddestination+"\\icons.png");
+        if(!particlesImage.exists()){
+            return;
+        }
         int multi = 1;
         BufferedImage image = null;
         try {
             image = ImageIO.read(particlesImage);
         } catch (IOException e) {
             e.printStackTrace();
-
         }
         multi = image.getWidth() / 256;
         try {
@@ -43,8 +42,6 @@ public class RenameGui {
             BufferedImage overlay = ImageIO.read(new File("sword" + multi + ".png"));
             int x1 = 0 * multi;
             int y1 = 94* multi;
-            int mULTIX = 84 * multi;
-            int mULTIY = 18 * multi;
             int xOutLine = x1 + overlay.getWidth();
             int yOutLine = y1 + overlay.getHeight();
             for (int x = x1; x < xOutLine; x++) {

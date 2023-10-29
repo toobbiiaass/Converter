@@ -28,7 +28,6 @@ public class AddNetherite {
                 int red = (pixel >> 16) & 0xFF;
                 int green = (pixel >> 8) & 0xFF;
                 int blue = pixel & 0xFF;
-               // System.out.println(alpha);
                 if(alpha == 255){
                     double L = 0.4126*red + 0.7152*green + 0.0722*blue; // double L = 0.2126*red + 0.7152*green + 0.0722*blue
                     double newR = 71*L/255; //74 -> 35
@@ -36,14 +35,12 @@ public class AddNetherite {
                     double newB = 65*L/255; //64 ->18
                     Color newColor = new Color((int) newR, (int) newG, (int) newB);
                     image.setRGB(col, row, newColor.getRGB());
-                   // System.out.println("Row: "+row +" Col: "+col+" R: "+red+" G: "+green+" B: "+blue+" NEWR: "+newR+" NEWG: "+newG+" NEWB: "+newB);
                 }
             }
         }
         try {
             File saveAs = new File(newItemPath);
             ImageIO.write(image, "png", saveAs);
-           // Main.addLog(new Logger());
         } catch (IOException ex) {
         }
     }
