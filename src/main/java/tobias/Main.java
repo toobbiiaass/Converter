@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 public class Main {
     private static ArrayList<Logger> logs = new ArrayList<>();
@@ -36,7 +34,7 @@ public class Main {
                 System.out.println("This name already exists!");
             }else {
                 newOrdner.mkdir();
-                System.out.println(ordnerName+" folder wurde erstellt!");
+                System.out.println(ordnerName+" folder was created!");
                 destinationFolder = outputPathTP+ordnerName;
                 break;
             }
@@ -67,7 +65,7 @@ public class Main {
                 myWriter.write("  }\n");
                 myWriter.write("}\n");
                 myWriter.close();
-                System.out.println("pack.mcmeta wurde erstellt und bearbeitet!");
+                System.out.println("pack.mcmeta wurde was created und edited!");
             } catch (IOException e) {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
@@ -79,7 +77,7 @@ public class Main {
         if(packPNG.exists()){
             try {
                 if(packPNG.renameTo(new File(destinationFolder+"\\"+ packPNG.getName()))) {
-                    System.out.println("pack.png wurde verschoben!");
+                    System.out.println("pack.png was moved!");
                 } else {
                     System.out.println("File is failed to move!");
                 }
@@ -145,7 +143,7 @@ public class Main {
 
 
     }
-    //TODO particles alle dazu + alles in csv speichern und auslesen + enchatclient
+
     private static void copyFile(Path source, Path target, String name){
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
@@ -153,22 +151,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    public static ArrayList<String> findZipFiles(String folderPath) {
-        ArrayList<String> zipFiles = new ArrayList<>();
-
-        File folder = new File(folderPath);
-        File[] files = folder.listFiles();
-
-        if (files != null) {
-            for (File file : files) {
-                if (file.isFile() && file.getName().toLowerCase().endsWith(".zip")) {
-                    zipFiles.add(file.getName());
-                }
-            }
-        }
-
-        return zipFiles;
     }
 
     private static void moveDirc(File from,File to,String name){

@@ -1,13 +1,9 @@
 package tobias;
-
-import tobias.Objects.Logger;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
 
 public class AddNetherite {
 
